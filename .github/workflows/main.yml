@@ -21,10 +21,10 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and tag Docker image
-      run: docker build -t ghcr.io/${{ secrets.GITHUB_Reversbtw }}/IMAGE_danil:${{ github.sha }} .
+      run: docker build -t ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }} .
 
     - name: Push Docker image
-      run: docker push ghcr.io/${{ secrets.GITHUB_Reversbtw }}/IMAGE_danil:${{ github.sha }}
+      run: docker push ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }}
 
     - name: Run Docker image
-      run: docker run ghcr.io/${{ secrets.GITHUB_Reversbtw }}/IMAGE_danil:${{ github.sha }}
+      run: docker run ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }}
