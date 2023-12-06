@@ -1,30 +1,41 @@
-name: Build and Publish Docker Image
+name: Publish Docker image
 
 on:
-  push:
+ push:
     branches:
-      - master
+      - 'main' 
 
 jobs:
-  build-and-publish:
+  push_to_registries:
+    name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
-
+    permissions:
+      packages: write
+      contents: read
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Check out the repo
+        uses: actions/checkout@v4
 
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ secrets.GITHUB_Reversbtw }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and tag Docker image
-      run: docker build -t ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }} .
+      - name: Docker build
+        run: docker build -t ghcr.io/Reversbtw/danil
 
-    - name: Push Docker image
-      run: docker push ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }}
+      - name: Docker push
+        run: docker push ghcr.io/Reversbtw/danil
 
-    - name: Run Docker image
-      run: docker run ghcr.io/${{ secrets.GITHUB_reversbtw }}/IMAGE_danil:${{ github.sha }}
+  run_image:
+    name: Run Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    needs: push_to_registries
+    steps:
+      - name: Docker run
+        run: docker run ghcr.io/Reversbtw/danil
