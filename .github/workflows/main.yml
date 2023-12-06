@@ -38,4 +38,4 @@ jobs:
     needs: push_to_registries
     steps:
       - run: docker run ghcr.io/reversbtw/danil:1.0
-      - run: ssh -o "StrictHostKeyChecking no" 'reversbtw-danil-wkzgduq4ls3#-fAfbSOIkbZx4iUaSCd7fzH.gSqIZwGg@reversbtw-danil-wkzgduq4ls3.ssh.ws-eu106.gitpod.io' "cd /workspace/nke-template && docker compose pull && docker compose up -d"
+      - run: ssh -o "StrictHostKeyChecking no" 'reversbtw-danil-wkzgduq4ls3#-fAfbSOIkbZx4iUaSCd7fzH.gSqIZwGg@reversbtw-danil-wkzgduq4ls3.ssh.ws-eu106.gitpod.io' 'cd /workspace/nke-template && docker compose pull && docker compose up -d'
