@@ -1,0 +1,7 @@
+version: "3.9"
+
+servises:
+  app:
+    image:
+    restart: unless-stopped
+    container_name: app
