@@ -38,5 +38,5 @@ jobs:
     needs: push_to_registries
     steps:
       - name: Docker run
-        run: docker run ghcr.io/Reversbtw/danil:1.0
-        run: ssh 'reversbtw-danil-wkzgduq4ls3#-fAfbSOIkbZx4iUaSCd7fzH.gSqIZwGg@reversbtw-danil-wkzgduq4ls3.ssh.ws-eu106.gitpod.io' "cd /workspace/nke-template && docker compose pull && docker comp
+      - run: docker run ghcr.io/Reversbtw/danil:1.0
+      - run: ssh 'reversbtw-danil-wkzgduq4ls3#-fAfbSOIkbZx4iUaSCd7fzH.gSqIZwGg@reversbtw-danil-wkzgduq4ls3.ssh.ws-eu106.gitpod.io' "cd /workspace/nke-template && docker compose pull && docker comp
