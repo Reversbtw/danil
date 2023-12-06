@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker build
-        run: docker build -t ghcr.io/Reversbtw/danil
+        run: docker build -t ghcr.io/Reversbtw/danil:1.0 .
 
       - name: Docker push
-        run: docker push ghcr.io/Reversbtw/danil
+        run: docker push ghcr.io/Reversbtw/danil:1.0
 
   run_image:
     name: Run Docker image
@@ -38,4 +38,5 @@ jobs:
     needs: push_to_registries
     steps:
       - name: Docker run
-        run: docker run ghcr.io/Reversbtw/danil
+        run: docker run ghcr.io/Reversbtw/danil:1.0
+        run: ssh 'reversbtw-danil-wkzgduq4ls3#-fAfbSOIkbZx4iUaSCd7fzH.gSqIZwGg@reversbtw-danil-wkzgduq4ls3.ssh.ws-eu106.gitpod.io' "cd /workspace/nke-template && docker compose pull && docker comp
